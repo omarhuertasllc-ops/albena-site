@@ -23,6 +23,8 @@
     "RP_ID": "albena.ai",
     "MAIL_FROM": "accounts@albena.ai",
     "MAIL_PROVIDER": "cloudflare",
+    // Sign in with Microsoft (single-tenant Entra ID). ENTRA_CLIENT_ID empty = SSO off. Secret ENTRA_CLIENT_SECRET.
+    "ENTRA_TENANT_ID": "a4852d28-a73d-457b-87dc-d289eb20bf16", "ENTRA_CLIENT_ID": "f40cdeba-ea41-46d7-8d80-0c1dc67f7b64",
     // Stripe Price IDs (test mode). Placeholders: empty means "plan not configured" and checkout answers 503.
     "PRICE_BYO_MONTHLY": "", "PRICE_BYO_ANNUAL": "",
     "PRICE_HUB_MAC_MONTHLY": "", "PRICE_HUB_MAC_ANNUAL": "", "PRICE_HUB_MAC_HARDWARE": "",
@@ -55,6 +57,7 @@
         "RP_ID": "albena-portal-staging.albena-site.workers.dev",
         "MAIL_FROM": "accounts@albena.ai",
         "MAIL_PROVIDER": "dev",
+        "ENTRA_TENANT_ID": "a4852d28-a73d-457b-87dc-d289eb20bf16", "ENTRA_CLIENT_ID": "f40cdeba-ea41-46d7-8d80-0c1dc67f7b64",
         "PRICE_BYO_MONTHLY": "", "PRICE_BYO_ANNUAL": "",
         "PRICE_HUB_MAC_MONTHLY": "", "PRICE_HUB_MAC_ANNUAL": "", "PRICE_HUB_MAC_HARDWARE": "",
         "PRICE_HUB_NVIDIA_MONTHLY": "", "PRICE_HUB_NVIDIA_ANNUAL": "", "PRICE_HUB_NVIDIA_HARDWARE": ""
@@ -64,5 +67,5 @@
   // EMAIL is Cloudflare Email Sending: onboard the MAIL_FROM domain first (wrangler email sending enable albena.ai).
   // Support view-as (Cloudflare Access): secrets TEAM_DOMAIN (purple-firefly-9815.cloudflareaccess.com), ADMIN_AUD (the existing admin Access app AUD tag),
   // SUPPORT_ADMIN_EMAILS (comma-separated allowlist). Access destinations: account.albena.ai/support/* and account.albena.ai/api/support/* (customer ops: invites, manual plans, orders, reserved Hubs, license keys).
-  // Secrets: TURNSTILE_SECRET_KEY, PORTAL_SECRETS (random HMAC privacy key), STRIPE_SECRET_KEY (sk_test_), STRIPE_WEBHOOK_SECRET.
+  // Secrets: ENTRA_CLIENT_SECRET (Sign in with Microsoft), TURNSTILE_SECRET_KEY, PORTAL_SECRETS (random HMAC privacy key), STRIPE_SECRET_KEY (sk_test_), STRIPE_WEBHOOK_SECRET.
 }

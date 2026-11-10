@@ -24,9 +24,11 @@ export interface Bindings {
   PRICE_HUB_MAC_MONTHLY?: string; PRICE_HUB_MAC_ANNUAL?: string; PRICE_HUB_MAC_HARDWARE?: string;
   // ALB-SEC-1 chain-break alerts to Obvera Event Management (key: secret, scope events.ingest only).
   OBVERA_EVENTS_URL?: string; OBVERA_EVENTS_KEY?: string;
+  // Sign in with Microsoft (Entra ID, single tenant). ENTRA_CLIENT_SECRET is a Worker secret; the others are vars. Unset/empty = SSO off.
+  ENTRA_CLIENT_ID?: string; ENTRA_TENANT_ID?: string; ENTRA_CLIENT_SECRET?: string;
   PRICE_HUB_NVIDIA_MONTHLY?: string; PRICE_HUB_NVIDIA_ANNUAL?: string; PRICE_HUB_NVIDIA_HARDWARE?: string;
 }
 export type AppEnv = {
   Bindings: Bindings;
-  Variables: { user: User; requestId: string; sessionId: string; loginMethod?: "passkey" | "magic"; viewAs?: { actor: string; expiresAt: number }; supportActor?: string };
+  Variables: { user: User; requestId: string; sessionId: string; loginMethod?: "passkey" | "magic" | "microsoft"; viewAs?: { actor: string; expiresAt: number }; supportActor?: string };
 };

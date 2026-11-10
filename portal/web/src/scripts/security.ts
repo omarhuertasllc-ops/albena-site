@@ -58,7 +58,7 @@ function sessionsPanel() {
 function historyPanel() {
   if (!history.length) return panel('Sign-in history', empty('No sign-in history to show.'));
   const p = panel('Sign-in history', table('Sign-in history', ['When', 'Method'], history.map((x) => [
-    document.createTextNode(fmtDateTime(x.at)), document.createTextNode(x.method === 'passkey' ? 'Passkey' : 'Email link')])));
+    document.createTextNode(fmtDateTime(x.at)), document.createTextNode(x.method === 'passkey' ? 'Passkey' : x.method === 'microsoft' ? 'Microsoft' : 'Email link')])));
   p.querySelector('.panel-body')?.classList.add('flush');
   return p;
 }
