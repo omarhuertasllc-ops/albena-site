@@ -42,7 +42,7 @@ const get = <T>(p: string) => req<T>('GET', p);
 namespace W {
   export interface Me { user: { id: string; email: string; role: 'owner' | 'member'; accountId: string }; viewAs?: { actor: string; expiresAt: number } }
   export interface Sessions { sessions: { id: string; createdAt: number; lastSeen: number; expiresAt: number; current: boolean }[] }
-  export interface History { events: { at: string; method: 'passkey' | 'magic_link' }[] } // at: ISO-8601 from the audit chain
+  export interface History { events: { at: string; method: 'passkey' | 'magic_link' | 'microsoft' }[] } // at: ISO-8601 from the audit chain
   export interface Passkeys { passkeys: { id: string; createdAt: number }[] }
   export interface Summary {
     entitlement: { plan: HeldPlan | 'none'; status: BillingSummary['status']; active: boolean; maxHubs: number; billingInterval: Interval | null;
@@ -77,6 +77,7 @@ export const api = {
   supportAccounts: () => req<{ me: string; accounts: { id: string; email: string; plan: string; status: string; hubs: number; created: number }[] }>('GET', '/api/support/accounts', undefined, { noRedirect: true }),
   logout: () => req<unknown>('POST', '/api/auth/logout', {}),
   magicStart: (email: string, turnstileToken: string) => req<unknown>('POST', '/api/auth/magic/start', { email, turnstileToken }, { noRedirect: true }),
+  providers: () => req<{ microsoft: boolean }>('GET', '/api/auth/providers', undefined, { noRedirect: true }),
   magicCode: (code: string) => req<unknown>('POST', '/api/auth/magic/code', { code }, { noRedirect: true }),
   // Options come back as the bare WebAuthn options; the server keeps the challenge. Verify takes the raw browser response.
   passkeyLoginOptions: () => req<Record<string, unknown>>('POST', '/api/auth/passkey/login/options', {}, { noRedirect: true }),

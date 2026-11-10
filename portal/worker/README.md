@@ -29,6 +29,8 @@ Tests use real local D1 through `@cloudflare/vitest-plugin`; mail and WebAuthn v
 
 Set `TURNSTILE_SECRET_KEY` and `PORTAL_SECRETS` (random HMAC privacy key) as Worker secrets. Keep `PORTAL_ORIGIN=https://account.albena.ai` and `RP_ID=albena.ai`.
 
+Sign in with Microsoft (optional, staff only): Entra app registration in the single tenant `a4852d28-a73d-457b-87dc-d289eb20bf16`, web redirect URI `${PORTAL_ORIGIN}/api/auth/microsoft/callback` (one per environment). Put the app's client id in the `ENTRA_CLIENT_ID` var and its client secret in the Worker secret `ENTRA_CLIENT_SECRET` (`wrangler secret put ENTRA_CLIENT_SECRET [--env staging]`). The login button appears only when all three are set. Single tenant is deliberate; multi-tenant would need verified-email handling.
+
 Mail transport is chosen by `MAIL_PROVIDER`: `cloudflare` (Email Sending `send_email` binding `EMAIL`; onboard the sender domain first) or `dev` (non-production only). See HANDOFF.md.
 
-Before production: create the D1 database and apply migrations, set secrets (`TURNSTILE_SECRET_KEY`, `PORTAL_SECRETS`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`), fill the `PRICE_*` vars with Stripe test price ids, build `portal/web` (the worker serves `../web/dist`), and establish D1 recovery/backups. API reference: ../CONTRACT.md.
+Before production: create the D1 database and apply migrations, set secrets (`TURNSTILE_SECRET_KEY`, `PORTAL_SECRETS`, `ENTRA_CLIENT_SECRET`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`), fill the `PRICE_*` vars with Stripe test price ids, build `portal/web` (the worker serves `../web/dist`), and establish D1 recovery/backups. API reference: ../CONTRACT.md.

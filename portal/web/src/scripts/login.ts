@@ -12,6 +12,7 @@ const emailErr = must('#email-err');
 const status = must('#status');
 const submit = must<HTMLButtonElement>('#send');
 const pk = must<HTMLButtonElement>('#passkey');
+const ms = must<HTMLAnchorElement>('#microsoft');
 const widget = must('[data-turnstile]');
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let token = MOCK ? 'mock' : '';
@@ -67,3 +68,7 @@ pk.addEventListener('click', async () => {
     pk.disabled = false;
   }
 });
+
+// Optional SSO: the button appears only when the worker has Microsoft sign-in configured.
+api.providers().then((p) => { ms.hidden = !p.microsoft; }).catch(() => { /* SSO is optional */ });
+if (new URLSearchParams(location.search).get('sso') === 'failed') say('Microsoft sign-in did not work. Please try again, or use another sign-in method.', 'is-error');

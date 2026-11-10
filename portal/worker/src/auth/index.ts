@@ -2,6 +2,7 @@ import type { Hono } from "hono";
 import type { AppEnv } from "../types";
 import { audit } from "../auditchain";
 import { mountMagic } from "./magic";
+import { mountMicrosoft } from "./microsoft";
 import { mountPasskeys } from "./passkeys";
 import { requireUser, clearSession, now, IDLE_SECONDS } from "./sessions";
 export { requireUser } from "./sessions";
@@ -12,6 +13,7 @@ export const migrations = ["0100_auth_core.sql", "0101_auth_audit_actor.sql", "0
 export function mount(app: Hono<AppEnv>): void {
   mountMagic(app);
   mountPasskeys(app);
+  mountMicrosoft(app);
   app.get("/api/me", requireUser, c => c.json({ user: c.get("user"), ...(c.get("viewAs") ? { viewAs: c.get("viewAs") } : {}) }));
   app.post("/api/auth/logout", requireUser, async c => {
     await c.env.DB.prepare("DELETE FROM sessions WHERE id = ?").bind(c.get("sessionId")).run();
@@ -37,9 +39,9 @@ export function mount(app: Hono<AppEnv>): void {
   // Sign-in history comes from the audit chain (successful sign-ins only; failures are not attributable to a user).
   app.get("/api/security/history", requireUser, async c => {
     const { results } = await c.env.DB.prepare(
-      "SELECT ts AS at, action FROM audit_log WHERE actor = ? AND action IN ('auth.login.passkey','auth.login.magic') ORDER BY id DESC LIMIT 50",
+      "SELECT ts AS at, action FROM audit_log WHERE actor = ? AND action IN ('auth.login.passkey','auth.login.magic','auth.login.microsoft') ORDER BY id DESC LIMIT 50",
     ).bind(c.get("user").id).all<{ at: string; action: string }>();
-    return c.json({ events: results.map(r => ({ at: r.at, method: r.action === "auth.login.passkey" ? "passkey" : "magic_link" })) });
+    return c.json({ events: results.map(r => ({ at: r.at, method: r.action === "auth.login.passkey" ? "passkey" : r.action === "auth.login.microsoft" ? "microsoft" : "magic_link" })) });
   });
   app.get("/api/security/passkeys", requireUser, async c => {
     const { results } = await c.env.DB.prepare("SELECT id, created_at AS createdAt FROM passkeys WHERE user_id = ? ORDER BY created_at DESC")

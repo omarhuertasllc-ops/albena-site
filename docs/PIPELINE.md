@@ -60,6 +60,7 @@ npx wrangler deploy --env staging
 # 3. Staging secrets (use staging/test values, never production secrets).
 npx wrangler secret put TURNSTILE_SECRET_KEY --env staging
 npx wrangler secret put PORTAL_SECRETS --env staging      # random HMAC privacy key
+npx wrangler secret put ENTRA_CLIENT_SECRET --env staging # optional: Sign in with Microsoft (also set the ENTRA_CLIENT_ID var)
 npx wrangler secret put STRIPE_SECRET_KEY --env staging   # sk_test_ only
 npx wrangler secret put STRIPE_WEBHOOK_SECRET --env staging
 # Optional (view-as): TEAM_DOMAIN, ADMIN_AUD, SUPPORT_ADMIN_EMAILS

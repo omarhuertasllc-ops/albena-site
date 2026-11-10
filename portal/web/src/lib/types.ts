@@ -2,7 +2,7 @@
 export interface Me { id: string; email: string; role: 'owner' | 'member'; accountId: string; viewAs?: { actor: string; expiresAt: number } }
 export interface Passkey { id: string; createdAt: string }
 export interface Session { id: string; current: boolean; createdAt: string; lastSeenAt: string }
-export interface SignIn { at: string; method: 'passkey' | 'magic_link' }
+export interface SignIn { at: string; method: 'passkey' | 'magic_link' | 'microsoft' }
 export type PlanId = 'byo' | 'hub_mac' | 'hub_nvidia' | 'estate';
 /** Plans an account can hold: the four paid plans, plus a time-boxed pilot that staff can grant. */
 export type HeldPlan = PlanId | 'pilot';

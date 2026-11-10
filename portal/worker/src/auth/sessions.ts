@@ -17,7 +17,7 @@ export const viewAsMayRun = (method: string, path: string) =>
 export const now = () => Math.floor(Date.now() / 1000);
 const options = { httpOnly: true, secure: true, sameSite: "Lax" as const, path: "/" };
 export function clearSession(c: Context<AppEnv>) { deleteCookie(c, SESSION_COOKIE, options); }
-export type LoginMethod = "passkey" | "magic";
+export type LoginMethod = "passkey" | "magic" | "microsoft";
 export async function createSession(c: Context<AppEnv>, user: User, method: LoginMethod): Promise<void> {
   const token = randomToken(), id = crypto.randomUUID(), ts = now();
   const old = getCookie(c, SESSION_COOKIE);
@@ -72,7 +72,7 @@ export const requireUser: MiddlewareHandler<AppEnv> = async (c, next) => {
   if (!user) { clearSession(c); return c.json({ error: "unauthorized" }, 401); }
   c.set("user", user);
   c.set("sessionId", session.id);
-  c.set("loginMethod", session.login_method === "passkey" ? "passkey" : "magic");
+  c.set("loginMethod", session.login_method === "passkey" || session.login_method === "microsoft" ? session.login_method : "magic");
   await next();
 };
 export async function userById(c: Context<AppEnv>, id: string): Promise<User | null> {
