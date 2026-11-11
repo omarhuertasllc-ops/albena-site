@@ -29,7 +29,7 @@ jobs:
           done
           tar -c ./*.sql | age -r age1zhr5cvrvp5a8j06due4r0tz8g3wj9zjqgc8suc9a80zak0mq9ccs54p65n -o d1-export.tar.age
           rm -f ./*.sql
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: d1-export
           path: d1-export.tar.age
