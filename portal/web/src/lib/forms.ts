@@ -5,12 +5,13 @@ import { h, toast, type Child } from './ui';
 let seq = 0;
 export interface Control { wrap: HTMLElement; el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement }
 
-export function field(label: string, kind: 'input' | 'select' | 'textarea', opts: { type?: string; value?: string; placeholder?: string; hint?: string; options?: [string, string][]; required?: boolean; rows?: string; min?: string; max?: string } = {}): Control {
+/** `autocomplete` takes a WCAG 1.3.5 token (name, email, tel, ...). Omit it only for identifiers and one-time secrets, which stay 'off'. */
+export function field(label: string, kind: 'input' | 'select' | 'textarea', opts: { type?: string; value?: string; placeholder?: string; hint?: string; autocomplete?: string; options?: [string, string][]; required?: boolean; rows?: string; min?: string; max?: string } = {}): Control {
   const id = `f${++seq}`;
   const el = kind === 'select'
     ? h('select', { class: 'select', id }, ...(opts.options ?? []).map(([v, t]) => h('option', { value: v }, t)))
     : kind === 'textarea' ? h('textarea', { class: 'input ta', id, rows: opts.rows ?? '4' })
-    : h('input', { class: 'input', id, type: opts.type ?? 'text', autocomplete: 'off', min: opts.min, max: opts.max });
+    : h('input', { class: 'input', id, type: opts.type ?? 'text', autocomplete: opts.autocomplete ?? 'off', min: opts.min, max: opts.max });
   if (opts.placeholder) el.setAttribute('placeholder', opts.placeholder);
   if (opts.required) el.setAttribute('required', '');
   if (opts.value !== undefined) el.value = opts.value;

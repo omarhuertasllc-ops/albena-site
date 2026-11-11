@@ -12,8 +12,8 @@ const tone = (s: string) => (s === 'active' || s === 'trialing' ? 'green' : s ==
 const planLabel = (a: AccountRow) => (a.comp ? `${PLAN_NAMES[a.plan] ?? a.plan} (comp)` : PLAN_NAMES[a.plan] ?? a.plan);
 
 function buildNewForm() {
-  const email = field('Email', 'input', { type: 'email', placeholder: 'person@example.com', required: true });
-  const name = field('Name (optional)', 'input');
+  const email = field('Email', 'input', { type: 'email', placeholder: 'person@example.com', required: true, autocomplete: 'email' });
+  const name = field('Name (optional)', 'input', { autocomplete: 'name' });
   const plans = planFields({ allowEmpty: true });
   const go = h('button', { class: 'btn btn-primary', type: 'submit' }, 'Create customer');
   const status = h('p', { class: 'form-status', role: 'status', 'aria-live': 'polite' });

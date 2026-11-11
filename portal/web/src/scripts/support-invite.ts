@@ -43,7 +43,7 @@ async function load() {
 }
 
 function oneForm() {
-  const email = field('Email', 'input', { type: 'email', required: true, value: new URLSearchParams(location.search).get('email') ?? '', placeholder: 'person@example.com' });
+  const email = field('Email', 'input', { type: 'email', required: true, autocomplete: 'email', value: new URLSearchParams(location.search).get('email') ?? '', placeholder: 'person@example.com' });
   const plans = planFields({ allowEmpty: true });
   const note = field('Staff note', 'input', { placeholder: 'Where they came from (staff only)' });
   const go = h('button', { class: 'btn btn-primary', type: 'submit' }, 'Send invite');

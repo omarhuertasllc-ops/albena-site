@@ -12,7 +12,7 @@
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
 body { background: var(--bg); color: var(--fg); font: 450 14px/1.55 'Inter Variable', Inter, system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; font-feature-settings: 'cv11', 'ss03'; min-height: 100vh; overflow-x: clip; }
 body.lock { overflow: hidden; }
 a { color: inherit; text-decoration: none; }
@@ -180,6 +180,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .perk { padding: 16px; display: grid; gap: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); align-content: start; }
 .perk .ico { width: 34px; height: 34px; border-radius: 9px; background: rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: var(--mut); }
 .perk .ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.perk h2 { font-size: 14px; font-weight: 550; }
 .perk p { color: var(--mut); font-size: 13px; }
 .links-list { display: grid; gap: 8px; }
 .links-list a, .tlink { color: var(--acc-hi); text-decoration: underline; text-underline-offset: 3px; }
@@ -201,14 +202,17 @@ dialog.palette { margin: 14vh auto auto; border: 1px solid var(--line-2); border
 .pal-o[aria-selected='true'] { background: rgba(113, 112, 255, 0.2); }
 
 /* auth pages */
-body.auth { display: grid; place-items: center; padding: 24px 16px; }
-.auth-card { width: min(420px, 100%); border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 28px; display: grid; gap: 18px; }
+body.auth { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 24px 16px; }
+.auth-card { box-sizing: border-box; min-width: 0; max-width: 100%; width: min(420px, 100%); border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 28px; display: grid; gap: 18px; }
 .auth-card h1 { font-size: 24px; }
 .auth-card .brand { margin-bottom: 4px; }
 .or { display: flex; align-items: center; gap: 12px; color: var(--mut); font-size: 12.5px; }
 .or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 .ts-widget { min-height: 65px; }
 .auth-card .btn { width: 100%; }
+.auth-card .ts-widget { max-width: 100%; min-width: 0; }
+.auth-foot { margin-top: 2px; font-size: 12.5px; text-align: center; }
+@media (max-width: 359px) { body.auth { padding: 12px 8px; } .auth-card { padding: 20px 16px; } }
 
 @media (max-width: 899px) {
   .shell { grid-template-columns: minmax(0, 1fr); }
@@ -330,3 +334,26 @@ details.panel[open] > summary { border-bottom: 1px solid var(--line); }
 .mesh-dot { fill: var(--mut); } .mesh-dot.on { fill: var(--green); }
 .mesh-label { fill: var(--fg-2); font-size: 11px; }
 .os-tag { white-space: nowrap; }
+
+/* public reading page (accessibility statement) */
+body.doc-page { padding: 0 16px 64px; }
+.doc-top { max-width: 760px; margin: 0 auto; padding: 16px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.doc-top nav { display: flex; gap: 16px; }
+.doc-top nav a, .doc-main a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.doc-main { max-width: 760px; margin: 0 auto; min-width: 0; overflow-wrap: anywhere; }
+.doc-main:focus { outline: 0; }
+.doc-main h1 { font-size: clamp(26px, 6vw, 36px); margin: 16px 0 8px; }
+.doc-main h2 { font-size: 18px; margin: 32px 0 10px; }
+.doc-meta { color: var(--mut); font-size: 13px; }
+.doc-lede { color: var(--fg-2); font-size: 16px; margin-top: 10px; }
+.doc-main section p, .doc-main li { color: var(--fg-2); font-size: 14.5px; line-height: 1.65; }
+.doc-main section p + p, .doc-main section p + ul { margin-top: 10px; }
+.doc-main ul { list-style: disc; padding-left: 22px; margin-top: 10px; }
+.doc-main li { margin-top: 6px; }
+.doc-main .tbl-scroll { overflow-x: auto; margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; }
+.doc-main .tbl-scroll:focus-visible { outline: 2px solid var(--acc-hi); outline-offset: 2px; }
+.doc-main table { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 14px; }
+.doc-main th, .doc-main td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); line-height: 1.5; overflow-wrap: normal; }
+.doc-main thead th { font-weight: 560; }
+.doc-main tbody th { font-weight: 500; }
+.doc-main tr:last-child > * { border-bottom: 0; }

@@ -45,6 +45,8 @@ function initForm(form: HTMLFormElement) {
         sitekey: widget.dataset.sitekey,
         action: widget.dataset.action,
         theme: 'dark',
+        // The normal widget is 300px wide; use the compact one when the form is narrower (320px reflow).
+        size: widget.clientWidth < 300 ? 'compact' : 'normal',
         callback: (t: string) => { token = t; },
         'expired-callback': () => { token = ''; },
         'error-callback': () => { token = ''; widgetFailed = true; },

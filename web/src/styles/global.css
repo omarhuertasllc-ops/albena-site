@@ -133,8 +133,8 @@ h3 { font-weight: 550; letter-spacing: -0.01em; }
 .foot-bot { max-width: var(--max); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--mut); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 /* forms (shared by waitlist + support) */
-.form { display: grid; gap: 16px; }
-.field { display: grid; gap: 6px; }
+.form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; }
+.field { display: grid; gap: 6px; min-width: 0; }
 .field label { font-size: 13px; font-weight: 500; color: var(--fg-2); }
 .field .opt { color: var(--mut); font-weight: 450; }
 .field input, .field select, .field textarea {
@@ -151,7 +151,9 @@ h3 { font-weight: 550; letter-spacing: -0.01em; }
 .field .err { font-size: 13px; color: var(--red); min-height: 0; }
 .field .err:empty { display: none; }
 .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-.ts-widget { min-height: 0; }
+.ts-widget { min-height: 0; max-width: 100%; min-width: 0; }
+.form-alt { font-size: 13.5px; color: var(--fg-2); line-height: 1.5; }
+.form-alt a { text-decoration: underline; text-underline-offset: 3px; color: var(--fg); }
 .form-status { font-size: 14px; color: var(--fg-2); min-height: 22px; }
 .form-status.is-error { color: var(--red); }
 .form-status.is-ok { color: #7fd9a8; }

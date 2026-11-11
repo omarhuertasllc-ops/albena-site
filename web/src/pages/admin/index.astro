@@ -8,7 +8,7 @@ const kpis = [
 <Admin title="Overview" section="overview" lead="Signups, support load and system integrity at a glance.">
   <dl class="grid-kpi" id="kpis" aria-label="Key figures">
     {kpis.map(([id, label]) => (
-      <div class="kpi skel" data-kpi={id}><dt>{label}</dt><dd>Loading</dd><p class="sub2"></p></div>
+      <div class="kpi skel" data-kpi={id}><dt>{label}</dt><dd>Loading</dd><dd class="sub2"></dd></div>
     ))}
   </dl>
   <div class="grid-2">

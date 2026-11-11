@@ -27,6 +27,7 @@ if (!MOCK) {
   s.onload = () => {
     widgetId = window.turnstile?.render(widget, {
       sitekey: widget.dataset.sitekey, action: widget.dataset.action, theme: 'dark',
+      size: widget.clientWidth < 300 ? 'compact' : 'normal', // 300px normal widget would overflow a 320px viewport
       callback: (t: string) => { token = t; },
       'expired-callback': () => { token = ''; },
       'error-callback': () => { token = ''; say('Verification could not load. Reload the page and try again.', 'is-error'); },
