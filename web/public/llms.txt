@@ -39,4 +39,4 @@ Facts, stated plainly:
 
 ## Optional
 - [Full text of the FAQ and key facts](https://albena.ai/llms-full.txt)
-- Contact: omar@dbaomarhuertasllc.com
+- Contact: support@albena.ai

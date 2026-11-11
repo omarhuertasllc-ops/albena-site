@@ -33,7 +33,7 @@ Details: ${abs('/connectors')}
 
 ## Trust status
 
-No security certification is claimed. Practices are aligned with SOC 2 Trust Services Criteria, NIST 800-53, STIG/CIS and NIST CSF 2.0 and are mapped, with honest status, at ${abs('/trust/controls')}. Independent audits have not yet been completed. The website sets no cookies and runs no analytics or advertising trackers.
+No security certification is claimed. Practices are aligned with SOC 2 Trust Services Criteria, NIST 800-53, STIG/CIS and NIST CSF 2.0 and are mapped, with honest status, at ${abs('/trust/controls')}. Independent audits have not yet been completed. The marketing website sets no cookies of its own and runs no analytics or advertising trackers; the customer portal uses only strictly necessary session cookies.
 
 ## Frequently asked questions
 
@@ -45,7 +45,7 @@ Albena vs cloud assistants (ChatGPT, Claude, Gemini, Copilot) and Home Assistant
 
 ## Contact
 
-omar@dbaomarhuertasllc.com, or ${abs('/support')}
+support@albena.ai, or ${abs('/support')}
 `;
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

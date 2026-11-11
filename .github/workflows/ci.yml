@@ -81,6 +81,21 @@ jobs:
         if: hashFiles('worker/package.json') == ''
         run: echo "No worker/ directory; skipping."
 
+  status-worker:
+    name: Status worker (tests + dry-run)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 24
+      - name: Install, test, dry-run (no deploy, no cloud access)
+        working-directory: status
+        run: |
+          npm ci
+          npm test
+          npx wrangler deploy --dry-run
+
   portal-worker:
     name: Portal worker (typecheck + tests + dry-run)
     runs-on: ubuntu-latest
@@ -174,7 +189,7 @@ jobs:
         run: |
           status=0
           found=0
-          for dir in . web worker; do
+          for dir in . web worker status; do
             if [ -f "$dir/package-lock.json" ]; then
               found=1
               echo "== npm audit in $dir"
@@ -244,7 +259,7 @@ jobs:
   deploy:
     name: Deploy (production)
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [controls, build-web, worker-tests, secrets, audit, sast, a11y]
+    needs: [controls, build-web, worker-tests, status-worker, secrets, audit, sast, a11y]
     runs-on: ubuntu-latest
     environment: production # configure required reviewers in repo settings
     steps:
@@ -279,6 +294,13 @@ jobs:
         working-directory: worker
         # --env "" targets the top-level (production) config, not the staging env
         run: npx wrangler deploy --env ""
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Deploy status page worker (status.albena.ai)
+        working-directory: status
+        run: |
+          npm ci
+          npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - name: No worker yet

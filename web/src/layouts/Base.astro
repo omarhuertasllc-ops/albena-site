@@ -14,15 +14,22 @@ interface Props {
   schema?: Record<string, unknown>[];
   /** Name used for this page in the BreadcrumbList. Defaults to title. */
   crumb?: string;
+  /** Page language. Spanish pages are machine-drafted and flagged as under review. */
+  lang?: 'en' | 'es';
+  /** Path of the same page in the other language; emits hreflang pairs (en, es, x-default = en). */
+  alt?: string;
 }
-const { title, description, noindex = false, ogTitle, ogImageAlt = OG_IMAGE_ALT, schema = [], crumb } = Astro.props;
+const { title, description, noindex = false, ogTitle, ogImageAlt = OG_IMAGE_ALT, schema = [], crumb, lang = 'en', alt } = Astro.props;
 // build.format is "file", so Astro.url.pathname ends in ".html"; canonical URLs never do.
 const path = Astro.url.pathname.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '').replace(/\/$/, '') || '/';
 const canonical = path === '/' ? `${SITE}/` : `${SITE}${path}`;
 const fullTitle = path === '/' ? title : `${title} | Albena`;
+const altUrl = alt ? `${SITE}${alt === '/' ? '/' : alt}` : '';
+const enUrl = lang === 'en' ? canonical : altUrl;
+const esUrl = lang === 'es' ? canonical : altUrl;
 
 const crumbs = path === '/' ? [] : [
-  { name: 'Home', url: `${SITE}/` },
+  { name: lang === 'es' ? 'Inicio' : 'Home', url: `${SITE}/` },
   ...(path.startsWith('/trust/') ? [{ name: 'Trust center', url: `${SITE}/trust` }] : []),
   { name: crumb ?? title, url: canonical },
 ];
@@ -39,7 +46,7 @@ const graph: Record<string, unknown>[] = [
 const jsonLd = noindex ? '' : JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,11 +59,14 @@ const jsonLd = noindex ? '' : JSON.stringify({ '@context': 'https://schema.org',
     ? <meta name="robots" content="noindex" />
     : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
   <link rel="canonical" href={canonical} />
+  {alt && <link rel="alternate" hreflang="en" href={enUrl} />}
+  {alt && <link rel="alternate" hreflang="es" href={esUrl} />}
+  {alt && <link rel="alternate" hreflang="x-default" href={enUrl} />}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="alternate" type="text/plain" href="/llms.txt" title="Albena summary for AI assistants (llms.txt)" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Albena" />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
   <meta property="og:title" content={ogTitle ?? fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
@@ -73,10 +83,10 @@ const jsonLd = noindex ? '' : JSON.stringify({ '@context': 'https://schema.org',
   {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <Nav />
+  <a class="skip" href="#main">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
+  <Nav lang={lang} />
   <main id="main" tabindex="-1"><slot /></main>
-  <Footer />
+  <Footer lang={lang} alt={alt} />
   <script>
     import '../scripts/site';
   </script>

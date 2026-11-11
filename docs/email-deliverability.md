@@ -10,6 +10,9 @@ The portal sends sign-in codes/links, pilot invites and household invites throug
 - Plain subjects, no emoji/caps/exclamation marks. Invite names who invited and why; every mail has an expiry line, a "didn't request this?" line and the identity line (`SENDER_IDENTITY` in `compose.ts`).
 - **TODO Omar:** replace `[City, ST ZIP]` in `SENDER_IDENTITY` with the real mailing address.
 
+## 0. Role mailboxes (ALB-OPS-1)
+`support@` (plus `accounts@`, `billing@`) route to the `albena-inbound-mail` Worker (Obvera tickets). `security@` and `privacy@` forward to the owner via Cloudflare Email Routing: run `scripts/setup-role-mailboxes.sh` after the destination address is verified. These addresses are published in `security.txt`, the privacy policy and the support page.
+
 ## 1. Check DNS
 `scripts/mail_check.sh [domain] [bounce-subdomain]` prints PASS/FAIL for MX/SPF on `cf-bounce.albena.ai`, DKIM, DMARC and root SPF.
 

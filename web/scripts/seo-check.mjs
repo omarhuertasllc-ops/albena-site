@@ -33,7 +33,7 @@ for (const file of pages) {
   ids.add(title);
   const h1 = (html.match(/<h1[\s>]/g) || []).length;
   if (h1 !== 1) err(path, `expected 1 h1, found ${h1}`);
-  if (!/<html lang="en"/.test(html)) err(path, 'missing lang');
+  if (!/<html lang="(en|es)"/.test(html)) err(path, 'missing lang');
   if (is404) continue;
   const canon = attr(html, /<link rel="canonical" href="([^"]*)"/);
   if (canon !== SITE + (path === '/' ? '/' : path)) err(path, `canonical ${canon}`);

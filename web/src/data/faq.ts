@@ -14,7 +14,7 @@ export const faqGroups: FaqGroup[] = [
       { q: 'What is a private home AI assistant?', a: 'A private home AI assistant is an assistant that handles your requests on equipment in your home instead of sending everything to a provider’s servers. Albena is built this way: everyday requests, audio, device data and memory are processed on hardware you own wherever possible, and a cloud model is used only if a task needs it and you allow it.', more: ['How it works', '/how-it-works'] },
       { q: 'What does local-first mean for Albena?', a: 'Local-first means Albena tries to handle each request on your own hardware before anything else. She uses local models and, on a Mac, Apple on-device intelligence. That keeps requests fast and private, and everyday requests keep working when the internet is down.', more: ['How it works', '/how-it-works'] },
       { q: 'Is Albena available now?', a: 'Albena is in early access and is not yet generally available. We invite people from the waitlist in small groups and email waitlist members before anything changes for them. There is no fixed public launch date yet.', more: ['Join the waitlist', '/waitlist'] },
-      { q: 'Who makes Albena?', a: 'Albena is made by Omar Huertas LLC, a small team. You can reach the team at omar@dbaomarhuertasllc.com or through the support page.', more: ['Support', '/support'] },
+      { q: 'Who makes Albena?', a: 'Albena is made by Omar Huertas LLC, a small team. You can reach the team at support@albena.ai or through the support page.', more: ['Support', '/support'] },
     ],
   },
   {
@@ -45,7 +45,7 @@ export const faqGroups: FaqGroup[] = [
       { q: 'Does Albena ask before taking actions?', a: 'Yes. ' + APPROVAL_POLICY + ' Approval applies to the specific action in front of you, not to future changes.', more: ['Approval architecture', '/how-it-works'] },
       { q: 'What extra protection do risky actions get?', a: 'The highest-risk actions need your PIN and a change record, and Albena saves rollback information and writes everything to an audit log. The log records what was asked, what was approved and what was done.', more: ['Controls and evidence', '/trust/controls'] },
       { q: 'Can I see and delete what Albena remembers?', a: 'Yes. Albena remembers your people, routines and preferences so you do not repeat yourself, and every memory can be viewed, corrected or deleted, one item or all of it. Memory is stored on your hardware first.', more: ['Privacy policy', '/privacy'] },
-      { q: 'Does Albena sell my data or use it for advertising?', a: 'No. We never sell your data and never use conversations for advertising. The albena.ai website sets no cookies of its own and runs no analytics or advertising trackers.', more: ['Privacy policy', '/privacy'] },
+      { q: 'Does Albena sell my data or use it for advertising?', a: 'No. We never sell your data and never use conversations for advertising. The albena.ai marketing website sets no cookies of its own and runs no analytics or advertising trackers; the customer portal uses only strictly necessary session cookies.', more: ['Privacy policy', '/privacy'] },
       { q: 'When does Albena use a cloud AI model?', a: 'Only when a task needs a larger model and you allow it. Cloud models are off by default, Albena tells you when she reaches for one, and when allowed they are billed at cost.', more: ['How it works', '/how-it-works'] },
     ],
   },

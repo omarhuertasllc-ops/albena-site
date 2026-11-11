@@ -1,9 +1,9 @@
 ---
 import Base from './Base.astro';
-interface Props { title: string; eyebrow: string; meta?: string; lede: string; description: string; toc?: { id: string; label: string }[] }
-const { title, eyebrow, meta, lede, description, toc = [] } = Astro.props;
+interface Props { title: string; eyebrow: string; meta?: string; lede: string; description: string; alt?: string; toc?: { id: string; label: string }[] }
+const { title, eyebrow, meta, lede, description, toc = [], alt } = Astro.props;
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} alt={alt}>
   <div class="wrap doc">
     {toc.length > 0 && (
       <nav class="toc" aria-label="Contents">
@@ -38,6 +38,12 @@ const { title, eyebrow, meta, lede, description, toc = [] } = Astro.props;
   .legal li { margin-top: 6px; }
   .legal li::marker { color: var(--mut); }
   .legal strong { color: var(--fg); font-weight: 500; }
+  .legal .draft-tag { font-size: 13px; font-weight: 400; color: var(--mut); }
+  .legal .tbl { overflow-x: auto; margin-top: 12px; }
+  .legal table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+  .legal th, .legal td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--mut); line-height: 1.55; }
+  .legal th { color: var(--fg); font-weight: 500; }
+  .legal td:first-child { color: var(--fg); font-weight: 500; }
   .legal p a, .legal li a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; transition: text-decoration-color 0.15s; }
   .legal p a:hover, .legal li a:hover { text-decoration-color: var(--acc-hi); }
   .legal code { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fg); background: rgba(255, 255, 255, 0.06); padding: 1px 6px; border-radius: 5px; }

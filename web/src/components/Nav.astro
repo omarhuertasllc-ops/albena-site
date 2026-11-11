@@ -1,7 +1,13 @@
 ---
 import Logo from './Logo.astro';
+const { lang = 'en' } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const items = [
+const itemsEs = [
+  { href: '/es/como-funciona', label: 'Cómo funciona' },
+  { href: '/es/privacidad', label: 'Privacidad' },
+  { href: '/es/soporte', label: 'Soporte' },
+];
+const itemsEn = [
   { href: '/features', label: 'Features' },
   { href: '/connectors', label: 'Connectors' },
   { href: '/hardware', label: 'Hardware' },
@@ -11,21 +17,22 @@ const items = [
   { href: '/trust', label: 'Trust' },
   { href: '/support', label: 'Support' },
 ];
+const items = lang === 'es' ? itemsEs : itemsEn;
 const current = (h: string) => (path === h || (h === '/trust' && path.startsWith('/trust'))) ? 'page' : undefined;
 ---
 <header class="nav" data-nav>
   <div class="nav-in">
-    <a class="brand" href="/" aria-label="Albena home"><Logo size={22} id="nav" /><span>Albena</span></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Menu" data-nav-toggle>
+    <a class="brand" href={lang === 'es' ? '/es' : '/'} aria-label={lang === 'es' ? 'Albena inicio' : 'Albena home'}><Logo size={22} id="nav" /><span>Albena</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label={lang === 'es' ? 'Menú' : 'Menu'} data-nav-toggle>
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" /></svg>
     </button>
     <div class="nav-panel" id="nav-panel">
-      <nav aria-label="Primary">
+      <nav aria-label={lang === 'es' ? 'Principal' : 'Primary'}>
         <ul class="links">
           {items.map((i) => <li><a href={i.href} aria-current={current(i.href)}>{i.label}</a></li>)}
         </ul>
       </nav>
-      <a class="btn btn-sm btn-primary" href="/waitlist">Join waitlist</a>
+      <a class="btn btn-sm btn-primary" href="/waitlist">{lang === 'es' ? 'Lista de espera' : 'Join waitlist'}</a>
     </div>
   </div>
 </header>

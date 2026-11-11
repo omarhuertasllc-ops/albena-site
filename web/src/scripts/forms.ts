@@ -123,7 +123,7 @@ function initForm(form: HTMLFormElement) {
       }
       showDone();
     } catch (e) {
-      setStatus(`We could not send that${e instanceof Error && e.message && !/^status|Failed|Load|network/i.test(e.message) ? ` (${e.message})` : ''}. Please try again, or email omar@dbaomarhuertasllc.com.`, 'is-error');
+      setStatus(`We could not send that${e instanceof Error && e.message && !/^status|Failed|Load|network/i.test(e.message) ? ` (${e.message})` : ''}. Please try again, or email support@albena.ai.`, 'is-error');
       token = '';
       if (widgetId) window.turnstile?.reset(widgetId);
     } finally {

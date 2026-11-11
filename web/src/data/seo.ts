@@ -17,7 +17,7 @@ export const organization = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo.png`, width: 512, height: 512 },
   brand: { '@type': 'Brand', name: 'Albena' },
   sameAs: ['https://dbaomarhuertasllc.com'],
-  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'omar@dbaomarhuertasllc.com', availableLanguage: 'English' },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'support@albena.ai', availableLanguage: 'English' },
 };
 
 export const website = {

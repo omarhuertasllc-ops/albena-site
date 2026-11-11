@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "albena-status",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "observability": { "enabled": false },
+  // status.albena.ai. Free-plan only: one Worker, one KV namespace, one cron.
+  "routes": [{ "pattern": "status.albena.ai", "custom_domain": true }],
+  "kv_namespaces": [{ "binding": "STATUS", "id": "2b93d5da39504abfb6b2381a9425ca14" }],
+  // Every 5 minutes: ~290 KV writes/day, under the free 1,000/day limit.
+  "triggers": { "crons": ["*/5 * * * *"] }
+}

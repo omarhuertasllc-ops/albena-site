@@ -9,17 +9,17 @@ const faqs: { cat: string; q: string; a: string }[] = [
   { cat: 'Getting started', q: 'When will Albena be available?', a: 'Albena is in early access and not yet generally available. We are inviting people from the waitlist in small groups. There is no fixed public launch date yet; we will email waitlist members before anything changes for them.' },
   { cat: 'Getting started', q: 'Which devices does Albena run on?', a: 'Early access is focused on Apple devices, with a home hub that runs on a computer in your home. Support for more platforms and smart-home brands is planned. Tell us what you use when you join the waitlist and it helps us prioritize.' },
   { cat: 'Getting started', q: 'What can Albena connect to?', a: 'Smart home, media, work and communication tools, cloud and infrastructure, and identity and IT systems, all available in early access. You can also add any REST API or MCP server. See the connectors page for the full list.' },
-  { cat: 'Privacy and data', q: 'How does privacy work?', a: 'Albena processes as much as possible on hardware you control. This website sets no cookies and has no trackers, and we collect only what you send us through the waitlist and support forms. We never sell your data or use it for advertising. See the Privacy Policy for details.' },
+  { cat: 'Privacy and data', q: 'How does privacy work?', a: 'Albena processes as much as possible on hardware you control. This marketing website sets no cookies of its own and has no trackers; the customer portal uses only strictly necessary session cookies. We collect only what you send us through the waitlist and support forms. We never sell your data or use it for advertising. See the Privacy Policy for details.' },
   { cat: 'Privacy and data', q: 'How do I delete my data?', a: 'Email us from the address you signed up with and ask us to delete your data. We will remove your waitlist record and any early-access account data, and confirm when it is done. In the app you can also remove stored memories and disconnect calendar or mail at any time.' },
   { cat: 'Privacy and data', q: 'Does Albena make changes without asking?', a: 'No. Reads are instant, but any change is proposed to you first. High-risk actions also need a change record and your PIN, and everything is written to an audit log.' },
   { cat: 'Privacy and data', q: 'Why do the forms use a verification check?', a: 'The waitlist and support forms use Cloudflare Turnstile to block automated spam. It loads only when you reach a form, and it is the only third-party script on this site.' },
-  { cat: 'Contact and security', q: 'How do I contact you?', a: 'Use the form on this page or email omar@dbaomarhuertasllc.com. For anything urgent about your account or data, put “Urgent” in the subject line.' },
-  { cat: 'Contact and security', q: 'How do I report a security issue?', a: 'Email omar@dbaomarhuertasllc.com with details and steps to reproduce. Our security page and security.txt explain how we handle reports.' },
+  { cat: 'Contact and security', q: 'How do I contact you?', a: 'Use the form on this page or email support@albena.ai. For anything urgent about your account or data, put “Urgent” in the subject line.' },
+  { cat: 'Contact and security', q: 'How do I report a security issue?', a: 'Email security@albena.ai with details and steps to reproduce. Our security page and security.txt explain how we handle reports.' },
   { cat: 'Contact and security', q: 'I found an accessibility barrier on the site.', a: 'Please tell us the page and what went wrong using the form. We aim to reply within 2 business days and fix confirmed issues promptly.' },
 ];
 const cats = [...new Set(faqs.map((f) => f.cat))];
 ---
-<Base title="Support and FAQ: help with Albena" description="Help center for Albena: answers on privacy, deleting your data, devices and connectors, how to contact support, and response times." schema={[faqPage(faqs, '/support')]}>
+<Base alt="/es/soporte" title="Support and FAQ: help with Albena" description="Help center for Albena: answers on privacy, deleting your data, devices and connectors, how to contact support, and response times." schema={[faqPage(faqs, '/support')]}>
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Help center</p>
@@ -81,7 +81,7 @@ const cats = [...new Set(faqs.map((f) => f.cat))];
           <Turnstile action="support" />
           <button class="btn btn-primary" type="submit">Send message</button>
           <p class="form-status" data-status role="status" aria-live="polite"></p>
-          <p class="form-note">We use what you send only to reply to you. See the <a href="/privacy">Privacy Policy</a>. Prefer email? <a href="mailto:omar@dbaomarhuertasllc.com?subject=Albena%20support">omar@dbaomarhuertasllc.com</a></p>
+          <p class="form-note">We use what you send only to reply to you. See the <a href="/privacy">Privacy Policy</a>. Prefer email? <a href="mailto:support@albena.ai?subject=Albena%20support">support@albena.ai</a></p>
         </form>
         <div class="form-done" data-done hidden tabindex="-1">
           <h3>Message sent.</h3>

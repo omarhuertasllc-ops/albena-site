@@ -1,18 +1,29 @@
 ---
 import Logo from './Logo.astro';
+const { lang = 'en', alt } = Astro.props;
+const es = lang === 'es';
 ---
 <footer class="foot">
   <div class="foot-in">
     <div class="foot-brand">
-      <a class="brand" href="/" aria-label="Albena home"><Logo size={20} id="foot" /><span>Albena</span></a>
-      <p>A private, local-first AI assistant for your home and life.</p>
+      <a class="brand" href={es ? '/es' : '/'} aria-label={es ? 'Albena inicio' : 'Albena home'}><Logo size={20} id="foot" /><span>Albena</span></a>
+      <p>{es ? 'Un asistente de IA privado y local para tu hogar y tu vida.' : 'A private, local-first AI assistant for your home and life.'}</p>
     </div>
+    {es ? (
+    <nav class="fcols" aria-label="Pie de página">
+      <div><h2>Producto</h2><a href="/es/como-funciona">Cómo funciona</a><a href="/waitlist">Lista de espera</a></div>
+      <div><h2>Confianza</h2><a href="/trust">Centro de confianza</a><a href="/security">Seguridad</a><a href="/subprocessors">Subencargados</a><a href="https://status.albena.ai" rel="noopener">Estado del servicio</a></div>
+      <div><h2>Empresa</h2><a href="https://dbaomarhuertasllc.com" rel="noopener">Omar Huertas LLC</a><a href="/es/soporte">Soporte</a><a href="mailto:support@albena.ai">support@albena.ai</a></div>
+      <div><h2>Legal</h2><a href="/terms">Términos (inglés)</a><a href="/es/privacidad">Privacidad</a>{alt && <a href={alt} hreflang="en" lang="en">English</a>}</div>
+    </nav>
+    ) : (
     <nav class="fcols" aria-label="Footer">
       <div><h2>Product</h2><a href="/features">Features</a><a href="/connectors">Connectors</a><a href="/hardware">Hardware</a><a href="/pricing">Pricing</a><a href="/how-it-works">How it works</a><a href="/compare">Compare</a><a href="/faq">FAQ</a><a href="/roadmap">Roadmap</a><a href="/waitlist">Waitlist</a></div>
-      <div><h2>Trust</h2><a href="/trust">Trust center</a><a href="/trust/controls">Control mapping</a><a href="/security">Security</a><a href="/accessibility">Accessibility</a></div>
-      <div><h2>Company</h2><a href="https://dbaomarhuertasllc.com" rel="noopener">Omar Huertas LLC</a><a href="/support">Support</a><a href="mailto:omar@dbaomarhuertasllc.com">Contact</a></div>
-      <div><h2>Legal</h2><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+      <div><h2>Trust</h2><a href="/trust">Trust center</a><a href="/trust/controls">Control mapping</a><a href="/security">Security</a><a href="/subprocessors">Subprocessors</a><a href="https://status.albena.ai" rel="noopener">Status</a><a href="/accessibility">Accessibility</a></div>
+      <div><h2>Company</h2><a href="https://dbaomarhuertasllc.com" rel="noopener">Omar Huertas LLC</a><a href="/support">Support</a><a href="mailto:support@albena.ai">support@albena.ai</a></div>
+      <div><h2>Legal</h2><a href="/terms">Terms</a><a href="/privacy">Privacy</a>{alt && <a href={alt} hreflang="es" lang="es">Español</a>}</div>
     </nav>
+    )}
   </div>
-  <div class="foot-bot"><p>&copy; 2026 Omar Huertas LLC</p><p>Early access. Not yet generally available.</p></div>
+  <div class="foot-bot"><p>&copy; 2026 Omar Huertas LLC</p><p>{es ? 'Acceso anticipado. Aún no disponible para todos.' : 'Early access. Not yet generally available.'}</p></div>
 </footer>
