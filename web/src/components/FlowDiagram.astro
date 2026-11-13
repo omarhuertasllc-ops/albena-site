@@ -4,7 +4,7 @@
   <svg class="dsk" viewBox="0 0 960 360" role="img" aria-labelledby="flow-t flow-d" focusable="false">
     <title id="flow-t">How Albena works</title>
     <desc id="flow-d">You speak to Albena. Your voice is processed on hardware you own, a Mac or an NVIDIA machine. That hardware talks to your home, media, work and optional cloud services. A privacy lane runs under everything: nothing leaves your house unless you allow it.</desc>
-    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#a5a8ff"/></marker></defs>
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#6ee7a0"/></marker></defs>
     <g class="n">
       <rect x="20" y="70" width="190" height="130" rx="16"/>
       <text x="115" y="112" class="h">1. You speak</text>
@@ -37,7 +37,7 @@
   </svg>
   <svg class="mob" viewBox="0 0 340 600" role="img" aria-labelledby="flowm-t" focusable="false">
     <title id="flowm-t">How Albena works: you speak, your hardware handles it locally, then it reaches your home and systems after asking. Optional cloud is off by default. Nothing leaves your house unless you allow it.</title>
-    <defs><marker id="ahm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#a5a8ff"/></marker></defs>
+    <defs><marker id="ahm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#6ee7a0"/></marker></defs>
     <g class="n"><rect x="40" y="10" width="260" height="70" rx="14"/><text x="170" y="40" class="h">1. You speak</text><text x="170" y="66" class="s">&ldquo;Hey Albena&rdquo;, voice or text</text></g>
     <path d="M170 82V120" class="ar m"/>
     <g class="n hw"><rect x="40" y="124" width="260" height="130" rx="14"/><text x="170" y="154" class="h">2. Your hardware</text><text x="170" y="182" class="s">Mac or NVIDIA box</text><text x="170" y="206" class="s">Local models and memory</text><text x="170" y="230" class="s">Approval gate</text></g>
@@ -52,19 +52,19 @@
 <style>
   .flow { margin: 0; }
   .flow svg { width: 100%; height: auto; display: block; min-width: 0; }
-  .n rect { fill: #121316; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1.4; }
-  .hw rect { stroke: #a5a8ff; fill: #16172a; }
-  text { text-anchor: middle; fill: #d0d6e0; font-family: Inter Variable, Inter, system-ui, sans-serif; }
-  .h { font-size: 21px; font-weight: 600; fill: #f7f8f8; }
-  .h2 { font-size: 18px; font-weight: 600; fill: #f7f8f8; }
+  .n rect { fill: #101d3d; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1.4; }
+  .hw rect { stroke: #6ee7a0; fill: #16172a; }
+  text { text-anchor: middle; fill: #c5d0e8; font-family: Inter Variable, Inter, system-ui, sans-serif; }
+  .h { font-size: 21px; font-weight: 600; fill: #e8edf8; }
+  .h2 { font-size: 18px; font-weight: 600; fill: #e8edf8; }
   .s { font-size: 16px; }
-  .t { font-size: 14px; fill: #d0d6e0; }
+  .t { font-size: 14px; fill: #c5d0e8; }
   .flow svg.mob { display: none; }
   .ar.m { marker-end: url(#ahm); }
-  .ar { fill: none; stroke: #a5a8ff; stroke-width: 2.4; marker-end: url(#ah); }
+  .ar { fill: none; stroke: #6ee7a0; stroke-width: 2.4; marker-end: url(#ah); }
   .dash { stroke-dasharray: 6 6; stroke: #f2c94c; }
-  .opt rect { fill: #121316; stroke: #f2c94c; stroke-dasharray: 6 5; stroke-width: 1.4; }
-  .lane rect { fill: rgba(76, 183, 130, 0.14); stroke: #4cb782; stroke-width: 1.4; }
+  .opt rect { fill: #101d3d; stroke: #f2c94c; stroke-dasharray: 6 5; stroke-width: 1.4; }
+  .lane rect { fill: rgba(34, 197, 94, 0.14); stroke: #22c55e; stroke-width: 1.4; }
   .lt { font-size: 16px; font-weight: 600; fill: #9be8c0; }
   figcaption { margin-top: 12px; font-size: 14px; color: var(--fg-2); }
   @media (max-width: 640px) { .flow svg.dsk { display: none; } .flow svg.mob { display: block; max-width: 420px; margin: 0 auto; } .mob .h { font-size: 19px; } .mob .s { font-size: 15.5px; } .mob .t { font-size: 15px; } .mob .lt { font-size: 15.5px; } }

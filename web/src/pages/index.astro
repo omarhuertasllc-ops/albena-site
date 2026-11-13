@@ -3,6 +3,7 @@ import { APPROVAL_POLICY } from '../data/approval';
 import Base from '../layouts/Base.astro';
 import RelatedLinks from '../components/RelatedLinks.astro';
 import Demo from '../components/Demo.astro';
+import ChatMock from '../components/ChatMock.astro';
 import FlowDiagram from '../components/FlowDiagram.astro';
 import WaitlistForm from '../components/WaitlistForm.astro';
 const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Jellyfin', 'Immich', 'GitHub', 'AWS', 'Azure', 'Cloudflare', 'Jira', 'Tailscale'];
@@ -20,7 +21,16 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
       </div>
     </div>
 
-    <div class="wrap"><Demo /></div>
+    <div class="wrap"><ChatMock /></div>
+  </section>
+
+  <section class="sec demo-sec" aria-labelledby="demo-title">
+    <div class="wrap center">
+      <p class="eyebrow">Demo</p>
+      <h2 id="demo-title" class="h-section">See how she asks first</h2>
+      <p class="sub">Pick a request. Albena shows which local tool she uses and when she stops to ask you.</p>
+      <Demo />
+    </div>
   </section>
 
   <section class="works" aria-label="Works with">
@@ -101,10 +111,10 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
       </div>
       <div class="hw-art reveal" aria-hidden="true">
         <svg viewBox="0 0 320 120" focusable="false">
-          <rect x="14" y="52" width="130" height="46" rx="10" fill="#1b1c1f" stroke="#fff" stroke-opacity="0.2" />
-          <circle cx="79" cy="82" r="3" fill="#7fd9a8" />
-          <rect x="176" y="14" width="118" height="92" rx="12" fill="#121316" stroke="#fff" stroke-opacity="0.2" />
-          <circle cx="212" cy="52" r="16" fill="none" stroke="#a5a8ff" stroke-width="1.6" /><circle cx="258" cy="52" r="16" fill="none" stroke="#a5a8ff" stroke-width="1.6" />
+          <rect x="14" y="52" width="130" height="46" rx="10" fill="#14234a" stroke="#fff" stroke-opacity="0.2" />
+          <circle cx="79" cy="82" r="3" fill="#86efac" />
+          <rect x="176" y="14" width="118" height="92" rx="12" fill="#101d3d" stroke="#fff" stroke-opacity="0.2" />
+          <circle cx="212" cy="52" r="16" fill="none" stroke="#6ee7a0" stroke-width="1.6" /><circle cx="258" cy="52" r="16" fill="none" stroke="#6ee7a0" stroke-width="1.6" />
         </svg>
       </div>
     </div>
@@ -176,62 +186,19 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
   @media (min-width: 700px) { .tcards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1000px) { .tcards { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 480px) { .diag { padding: 14px; } }
-  .hero { position: relative; overflow: hidden; padding: 72px 0 0; }
+  .hero { position: relative; overflow: hidden; padding: 56px 0 24px; }
   .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.35; -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0, #000, transparent 75%); mask-image: radial-gradient(ellipse 70% 55% at 50% 0, #000, transparent 75%); }
   .hero-in { position: relative; max-width: var(--max); margin: 0 auto; padding: 0 20px; text-align: center; }
-  .announce { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, 0.04); font-size: 13px; font-weight: 500; color: var(--fg-2); transition: background 0.15s; }
-  .announce:hover { background: rgba(255, 255, 255, 0.08); }
+  .announce { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 14px; border-radius: 999px; border: 1px solid #2f6b4f; background: rgba(34, 197, 94, 0.06); font-size: 13px; font-weight: 600; color: #86efac; transition: background 0.15s, border-color 0.15s; }
+  .announce:hover { background: rgba(34, 197, 94, 0.14); border-color: var(--acc); }
   .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 10px var(--acc); }
-  h1 { margin: 24px auto 0; max-width: 14ch; font-size: clamp(46px, 10vw, 88px); }
+  h1 { margin: 24px auto 0; max-width: 16ch; font-size: clamp(42px, 8.5vw, 72px); }
   .br { display: none; }
+  @media (min-width: 760px) { .br { display: inline; } }
+  .demo-sec { text-align: center; border-top: 0; padding-top: 56px; }
+  .demo-sec .demo { margin-top: 32px; }
   .lead { margin: 24px auto 0; max-width: 620px; }
   .cta { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-  .stage { position: relative; max-width: 1000px; margin: 64px auto 0; padding: 0 16px; perspective: 1600px; }
-  .stage-glow { position: absolute; left: 50%; top: 0; width: 90%; height: 70%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 40%, rgba(113, 112, 255, 0.38), rgba(94, 106, 210, 0.12) 45%, transparent 70%); filter: blur(40px); }
-  .win { position: relative; transform: rotateX(14deg) scale(0.98); transform-origin: 50% 0; border: 1px solid var(--line-2); border-radius: 14px; background: linear-gradient(180deg, #121316, #0b0c0d); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 40px 120px -20px rgba(113, 112, 255, 0.35), 0 30px 60px rgba(0, 0, 0, 0.6); overflow: hidden; transition: transform 0.8s var(--ease); }
-  .win::before { content: ''; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent); }
-  .stage:hover .win { transform: rotateX(6deg) scale(0.99); }
-  .win-bar { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px; border-bottom: 1px solid var(--line); position: relative; }
-  .win-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); }
-  .win-bar span { position: absolute; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--mut); }
-  .win-body { display: grid; grid-template-columns: 1fr; min-height: 340px; text-align: left; }
-  .side { display: none; padding: 14px 10px; border-right: 1px solid var(--line); background: rgba(255, 255, 255, 0.015); }
-  .side-h { font-size: 11px; color: var(--mut); padding: 8px 10px 6px; font-weight: 500; }
-  .side a { display: flex; align-items: center; gap: 9px; padding: 6px 10px; border-radius: 7px; font-size: 13px; color: var(--mut); font-weight: 500; }
-  .side a.on { background: rgba(255, 255, 255, 0.07); color: var(--fg); }
-  .side svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
-  .side b { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--mut); }
-  .sq { width: 9px; height: 9px; border-radius: 3px; background: var(--acc); margin: 0 3px; }
-  .sq.s2 { background: var(--green); }
-  .main-pane { padding: 18px 18px 16px; position: relative; min-width: 0; }
-  .pane-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .pane-h h3 { font-size: 15px; }
-  .rows li { display: flex; align-items: center; gap: 10px; padding: 10px 4px; border-bottom: 1px solid var(--line); font-size: 13px; min-width: 0; }
-  .rows li:first-child { border-top: 1px solid var(--line); }
-  .rows .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .rows .kbd { display: none; }
-  .voice { margin-top: 16px; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 12px; background: rgba(113, 112, 255, 0.07); box-shadow: 0 0 40px -10px rgba(113, 112, 255, 0.5); }
-  .mic { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #8b8af7, #5e6ad2); display: grid; place-items: center; flex: none; }
-  .mic svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 1.4; stroke-linecap: round; }
-  .vt { font-size: 14px; color: var(--fg-2); flex: 1; }
-  .caret { display: inline-block; width: 1.5px; height: 14px; background: var(--acc); margin-left: 3px; vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
-  .bars { display: flex; align-items: center; gap: 3px; height: 20px; }
-  .bars i, .ill-wave i { display: block; width: 3px; border-radius: 2px; background: var(--acc); animation: eq 1.2s ease-in-out infinite; }
-  .bars i { height: 100%; }
-  .bars i:nth-child(2n) { animation-delay: -0.4s; }
-  .bars i:nth-child(3n) { animation-delay: -0.8s; }
-  .stage-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 46%; background: linear-gradient(180deg, transparent, var(--bg) 85%); pointer-events: none; }
-  @media (min-width: 760px) {
-    .br { display: inline; }
-    .win-body { grid-template-columns: 190px 1fr; min-height: 400px; }
-    .side { display: block; }
-    .rows .kbd { display: inline-block; }
-    .main-pane { padding: 22px 24px 20px; }
-    .win-bar { height: 42px; }
-  }
-  @media (max-width: 759px) { .hide-s { display: none; } .win { transform: rotateX(10deg) scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .win, .stage:hover .win { transform: rotateX(8deg); } }
 
   /* works-with strip */
   .works { padding: 8px 0 72px; position: relative; z-index: 1; }
@@ -246,7 +213,7 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
   /* bento */
   .bento { display: grid; gap: 14px; grid-template-columns: 1fr; }
   .bcard { --mx: 50%; --my: 0; position: relative; padding: 22px; border-radius: 16px; border: 1px solid transparent; background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.07)) border-box; overflow: hidden; display: flex; flex-direction: column; }
-  .bcard::before { content: ''; position: absolute; inset: 0; background: radial-gradient(360px circle at var(--mx) var(--my), rgba(113, 112, 255, 0.16), transparent 60%); opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+  .bcard::before { content: ''; position: absolute; inset: 0; background: radial-gradient(360px circle at var(--mx) var(--my), rgba(34, 197, 94, 0.16), transparent 60%); opacity: 0; transition: opacity 0.25s; pointer-events: none; }
   .bcard:hover::before { opacity: 1; }
   .bcard h3 { font-size: 17px; margin-top: 20px; position: relative; }
   .bcard p { margin-top: 6px; color: var(--mut); font-size: 14px; position: relative; }
@@ -258,7 +225,7 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
   .ill-wave i:nth-child(3n) { animation-delay: -0.7s; }
   .ill-wave i:nth-child(4n) { animation-delay: -1s; }
   .ill-tog { display: flex; flex-direction: column; justify-content: space-between; }
-  .ill-tog div { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: #c3c7ce; }
+  .ill-tog div { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: #c5d0e8; }
   .tg { width: 26px; height: 15px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); position: relative; }
   .tg::after { content: ''; position: absolute; left: 2px; top: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; }
   .tg.on { background: var(--acc); }
@@ -266,27 +233,27 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
   .ill-cal { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .ill-cal div { display: flex; align-items: center; gap: 10px; }
   .ill-cal em { font-style: normal; font-size: 11px; color: var(--mut); width: 34px; }
-  .bar { flex: 1; font-size: 12px; padding: 5px 10px; border-radius: 6px; border-left: 2px solid var(--acc); background: rgba(113, 112, 255, 0.12); color: var(--fg-2); }
-  .bar.b2 { border-color: var(--green); background: rgba(76, 183, 130, 0.12); }
+  .bar { flex: 1; font-size: 12px; padding: 5px 10px; border-radius: 6px; border-left: 2px solid var(--acc); background: rgba(34, 197, 94, 0.12); color: var(--fg-2); }
+  .bar.b2 { border-color: var(--green); background: rgba(34, 197, 94, 0.12); }
   .bar.b3 { border-color: var(--amber); background: rgba(242, 201, 76, 0.1); }
   .ill-mem svg { width: 100%; height: 100%; }
   .ill-mem path { stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; fill: none; }
-  .ill-mem circle { fill: #1b1c1f; stroke: var(--mut); stroke-width: 1.2; }
+  .ill-mem circle { fill: #14234a; stroke: var(--mut); stroke-width: 1.2; }
   .ill-mem circle.c { fill: var(--acc); stroke: none; filter: drop-shadow(0 0 8px var(--acc)); }
   .ill-lock { display: flex; align-items: center; gap: 22px; justify-content: center; }
   .ill-lock svg { width: 44px; height: 52px; fill: none; stroke: var(--acc); stroke-width: 2; flex: none; }
-  .lock-rows { display: flex; flex-direction: column; gap: 7px; font-size: 12.5px; color: #c3c7ce; }
+  .lock-rows { display: flex; flex-direction: column; gap: 7px; font-size: 12.5px; color: #c5d0e8; }
   .lock-rows span::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 8px; }
   .ill-conn { display: grid; place-items: center; }
-  .hub { z-index: 1; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: linear-gradient(135deg, #8b8af7, #5e6ad2); color: #fff; box-shadow: 0 0 30px rgba(113, 112, 255, 0.6); }
-  .n { position: absolute; font-size: 11.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--fg-2); background: #121316; }
+  .hub { z-index: 1; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: linear-gradient(135deg, #34d56f, #16a34a); color: #fff; box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); }
+  .n { position: absolute; font-size: 11.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--fg-2); background: #101d3d; }
   .n1 { left: 6%; top: 14%; } .n2 { left: 24%; bottom: 12%; } .n3 { right: 8%; top: 12%; } .n4 { right: 22%; bottom: 14%; } .n5 { left: 42%; top: 6%; }
   @media (min-width: 760px) { .bento { grid-template-columns: repeat(3, 1fr); } .span2 { grid-column: span 2; } .span3 { grid-column: span 3; } }
   @media (max-width: 420px) { .ill-lock { flex-direction: column; gap: 10px; } .ill-lock svg { height: 34px; } }
 
   /* hardware band */
   .hw-grid { display: grid; gap: 32px; align-items: center; }
-  .hw-art { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: radial-gradient(ellipse at 50% 100%, rgba(113, 112, 255, 0.2), transparent 70%), var(--panel); }
+  .hw-art { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: radial-gradient(ellipse at 50% 100%, rgba(34, 197, 94, 0.2), transparent 70%), var(--panel); }
   .hw-art svg { width: 100%; height: auto; }
   .hwband .more { display: flex; gap: 10px; flex-wrap: wrap; }
   @media (min-width: 900px) { .hw-grid { grid-template-columns: 1.1fr 0.9fr; gap: 64px; } }
@@ -312,7 +279,7 @@ const strip = ['Home Assistant', 'Philips Hue', 'Google Workspace', 'Slack', 'Je
   @media (min-width: 760px) { .trust-links { grid-template-columns: repeat(3, 1fr); } }
 
   .cta-sec { overflow: hidden; text-align: center; padding: 120px 0; }
-  .cta-glow { position: absolute; left: 50%; top: 0; width: 900px; height: 420px; max-width: 150%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 0, rgba(113, 112, 255, 0.28), transparent 65%); pointer-events: none; }
+  .cta-glow { position: absolute; left: 50%; top: 0; width: 900px; height: 420px; max-width: 150%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 0, rgba(34, 197, 94, 0.28), transparent 65%); pointer-events: none; }
   .center { position: relative; }
   .center .sub { margin-left: auto; margin-right: auto; }
   .cta-form { margin: 32px auto 0; max-width: 440px; text-align: left; }

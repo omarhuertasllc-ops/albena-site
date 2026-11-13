@@ -1,0 +1,152 @@
+---
+// Static HTML/CSS replica of the Albena chat app (chat.albena.ai): sidebar, top bar with
+// mode switch, a sample conversation with the model badge and Ask Claude check, and the
+// composer with its Image / Agent / Terminal / Canvas pills. Markup, class names and CSS
+// values follow chat.albena.ai static/app.css. Sample conversation, nothing here is live.
+const chats: { g: string; items: { t: string; on?: boolean }[] }[] = [
+  { g: 'Today', items: [{ t: 'Explain solar panels simply', on: true }, { t: 'Business email to a supplier' }] },
+  { g: 'Earlier', items: [{ t: 'What is ServiceNow?' }, { t: 'Water from air, how?' }] },
+];
+const chips = ['Image', 'Agent', 'Terminal', 'Canvas'];
+const icons: Record<string, string> = {
+  Image: 'M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M9 9.5h.01',
+  Agent: 'M12 3v3M8 21h8M5 8h14v9H5zM9 12h.01M15 12h.01',
+  Terminal: 'M4 5h16v14H4zM7 10l3 2-3 2M12 15h5',
+  Canvas: 'M4 4h16v16H4zM8 9h8M8 13h8M8 17h5',
+};
+---
+<figure class="cm" role="img" aria-label="Illustration of the Albena chat app. A sample conversation: the user asks Albena to explain solar panels simply, Albena answers in plain language from a local model, and a second card shows Claude's read-only check of that answer.">
+  <div class="cm-glow" aria-hidden="true"></div>
+  <div class="cm-app" aria-hidden="true">
+    <aside class="cm-side">
+      <div class="cm-side-head"><span class="cm-new">&#65291; New chat</span></div>
+      <div class="cm-search">Search chats</div>
+      <div class="cm-list">
+        {chats.map((c) => (
+          <>
+            <div class="cm-grp">{c.g}</div>
+            {c.items.map((i) => <div class={'cm-ci' + (i.on ? ' on' : '')}>{i.t}</div>)}
+          </>
+        ))}
+      </div>
+      <div class="cm-side-foot">Answers can contain mistakes. Check important details.</div>
+    </aside>
+    <div class="cm-main">
+      <div class="cm-top">
+        <span class="cm-burger">&#9776;</span>
+        <span class="cm-brand"><span class="cm-logo">A</span><span class="cm-word">Albena</span><span class="cm-by">by Omar Huertas LLC</span></span>
+        <span class="cm-seg"><span class="on">Auto</span><span>Fast</span><span>Deep</span><span>Research</span><span>Code</span></span>
+        <span class="cm-avatar">O</span>
+      </div>
+      <div class="cm-thread">
+        <div class="cm-msg cm-user">Explain solar panels simply</div>
+        <div class="cm-msg cm-bot">
+          <div class="cm-md">
+            <p>Solar panels turn sunlight into electricity.</p>
+            <ul>
+              <li>Light hits silicon cells and knocks electrons loose.</li>
+              <li>Those moving electrons are direct current (DC).</li>
+              <li>An inverter turns that into the AC your home uses.</li>
+            </ul>
+            <p>Extra power can charge a battery or go back to the grid.</p>
+          </div>
+          <div class="cm-foot">
+            <span class="cm-badge">ai5080 GPU &middot; gpt-oss:20b</span>
+            <span class="cm-copy">Copy</span>
+            <span class="cm-copy cm-askc">Ask Claude</span>
+          </div>
+        </div>
+        <div class="cm-msg cm-bot cm-check">
+          <div class="cm-md">
+            <p><strong>Claude's check</strong></p>
+            <p>The explanation is accurate. One nuance: output drops on hot days, because heat lowers cell efficiency.</p>
+          </div>
+          <div class="cm-foot"><span class="cm-badge">Claude Sonnet 5.5 &middot; read-only</span><span class="cm-copy">Copy</span></div>
+        </div>
+      </div>
+      <div class="cm-composer">
+        <div class="cm-box">
+          <span class="cm-clip"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m21 11.5-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.8 1.8 0 0 1-2.6-2.6l8.5-8.5"/></svg></span>
+          <span class="cm-ph">Message Albena&hellip;</span>
+          <span class="cm-send"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12 2-12 2z"/></svg></span>
+        </div>
+        <div class="cm-mrow">
+          <span class="cm-mbtn">Albena local &#9662;</span>
+          {chips.map((c) => (
+            <span class="cm-mbtn cm-ic"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d={icons[c]} /></svg>{c}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption class="cm-cap">Illustration of the Albena chat app with a sample conversation. Real answers depend on the models and connectors you set up.</figcaption>
+</figure>
+
+<style>
+  .cm { position: relative; max-width: 1040px; margin: 56px auto 0; padding: 0 16px; }
+  .cm-glow { position: absolute; left: 50%; top: 8%; width: 80%; height: 60%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 40%, rgba(34, 197, 94, 0.22), transparent 70%); filter: blur(50px); pointer-events: none; }
+  .cm-app { position: relative; display: flex; height: 560px; text-align: left; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: radial-gradient(900px 420px at 70% -10%, #16295a 0, var(--bg) 60%); box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02); font-size: 14px; line-height: 1.55; user-select: none; }
+  .cm-side { display: none; width: 220px; flex: none; flex-direction: column; background: var(--bg-2); border-right: 1px solid var(--line); }
+  .cm-side-head { padding: 14px; }
+  .cm-new { display: block; text-align: center; background: var(--acc); color: var(--on-acc); border-radius: 12px; padding: 9px 12px; font-weight: 600; }
+  .cm-search { margin: 0 14px 8px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: 13px; color: var(--mut); }
+  .cm-list { flex: 1; padding: 0 8px; overflow: hidden; }
+  .cm-grp { padding: 10px 10px 2px; color: var(--mut); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .cm-ci { padding: 8px 10px; border-radius: 10px; margin: 2px 0; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--fg-2); }
+  .cm-ci.on { background: var(--panel); color: var(--fg); }
+  .cm-side-foot { padding: 12px 16px; color: var(--mut); font-size: 11.5px; border-top: 1px solid var(--line); }
+  .cm-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .cm-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: rgba(11, 22, 48, 0.7); }
+  .cm-burger { display: none; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 10px; place-items: center; color: var(--fg-2); font-size: 15px; flex: none; }
+  .cm-brand { display: flex; align-items: baseline; gap: 10px; flex: 1; min-width: 0; }
+  .cm-logo { align-self: center; width: 28px; height: 28px; border-radius: 9px; background: var(--acc); color: var(--on-acc); font-weight: 700; display: grid; place-items: center; flex: none; }
+  .cm-word { font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
+  .cm-by { display: none; color: var(--mut); font-size: 12px; white-space: nowrap; }
+  .cm-seg { display: flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; flex: none; }
+  .cm-seg span { padding: 4px 11px; border-radius: 999px; color: var(--mut); font-size: 13px; font-weight: 500; }
+  .cm-seg span:nth-child(n+4) { display: none; }
+  .cm-seg .on { background: var(--acc); color: var(--on-acc); font-weight: 600; }
+  .cm-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--acc); color: var(--on-acc); font-weight: 700; display: grid; place-items: center; flex: none; }
+  .cm-thread { flex: 1; min-height: 0; overflow: hidden; padding: 20px 16px 8px; display: flex; flex-direction: column; gap: 16px; max-width: 780px; width: 100%; margin: 0 auto; }
+  .cm-msg { max-width: 100%; }
+  .cm-user { align-self: flex-end; background: var(--acc); color: var(--on-acc); padding: 9px 16px; border-radius: 18px 18px 4px 18px; font-weight: 500; max-width: 85%; }
+  .cm-bot { align-self: flex-start; width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 4px 18px 18px 18px; padding: 12px 16px; }
+  .cm-check { border-left: 4px solid #86efac; }
+  .cm-md p { margin: 0.4em 0; }
+  .cm-md > :first-child { margin-top: 0; }
+  .cm-md > :last-child { margin-bottom: 0; }
+  .cm-md ul { padding-left: 1.3em; margin: 0.4em 0; list-style: disc; }
+  .cm-md li { margin: 0.2em 0; }
+  .cm-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--mut); }
+  .cm-badge { background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+  .cm-copy { border: 1px solid var(--line); border-radius: 8px; padding: 3px 10px; }
+  .cm-foot .cm-badge + .cm-copy { margin-left: auto; }
+  .cm-askc { border-color: #2f6b4f; color: #86efac; }
+  .cm-composer { max-width: 780px; width: 100%; margin: 0 auto; padding: 8px 16px 14px; }
+  .cm-box { display: flex; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 8px 8px 8px 8px; }
+  .cm-clip { width: 36px; height: 36px; display: grid; place-items: center; color: var(--mut); flex: none; }
+  .cm-ph { flex: 1; color: var(--mut); }
+  .cm-send { width: 40px; height: 40px; border-radius: 14px; background: var(--acc); color: var(--on-acc); display: grid; place-items: center; flex: none; }
+  .cm-mrow { display: flex; align-items: center; gap: 8px; margin-top: 8px; overflow: hidden; }
+  .cm-mbtn { display: inline-flex; align-items: center; gap: 6px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 12px; white-space: nowrap; flex: none; }
+  .cm-cap { margin: 14px auto 0; max-width: 62ch; text-align: center; font-size: 12.5px; color: var(--mut); }
+  @media (min-width: 760px) {
+    .cm-side { display: flex; }
+    .cm-by { display: inline; }
+    .cm-seg span:nth-child(n+4) { display: inline; }
+    .cm-thread { padding: 24px 18px 10px; }
+  }
+  @media (max-width: 759px) {
+    .cm { padding: 0 12px; margin-top: 40px; }
+    .cm-app { height: 600px; }
+    .cm-burger { display: none; }
+    .cm-word { font-size: 17px; }
+    .cm-seg span { padding: 4px 9px; }
+    .cm-seg span:nth-child(n+3) { display: none; }
+    .cm-thread { gap: 12px; padding: 14px 12px 6px; }
+    .cm-bot { padding: 11px 13px; }
+    .cm-mrow { gap: 6px; }
+    .cm-mbtn { padding: 4px 9px; }
+    .cm-mbtn:first-child { display: none; }
+  }
+</style>
