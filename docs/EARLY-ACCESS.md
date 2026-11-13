@@ -45,7 +45,12 @@ cd portal/worker && npx wrangler secret put CF_ACCESS_READ_TOKEN --env staging
 - Account token "albena-portal-staging early-access read" (Access: Groups Read only) created and piped straight into staging secret CF_ACCESS_READ_TOKEN (never displayed).
 - Staging portal b7034264: ea-allowed-test -> granted (chat/console/downloads), ea-denied-test -> "You're on the list". Screenshots shown.
 - `link` run: chat.albena.ai + console.albena.ai "Allowed people" policies now include only the group (same 3 people). Rollback: put the 3 inline email rules back on policies d0967a03 / 5cfa6274.
-- Production portal NOT deployed (needs a prod read token: same command with `--env` omitted, then merge PR #72 and portal/deploy.sh).
+- PRODUCTION LIVE (Omar: "Yes, deploy prod"), PR #72 squash-merged as af938f6:
+  - Prod token "albena-portal early-access read" (Groups Read) piped into CF_ACCESS_READ_TOKEN on albena-portal (never displayed).
+  - Portal account.albena.ai version 74ebc11b (previous c8ef0e70). Deployed manually with deploy.sh's gates (tests 322/322, prod Turnstile key, no new migrations) because deploy.sh requires a `main` checkout and CI's prod job waits on approval. Smoke: /, /login, /albena, /invite, /household 200; a temporary prod session (ea-prod-smoke@example.com) got `waitlist` from the live group, then its rows were deleted (audit rows stay, append-only).
+  - Site albena.ai version 1653a285 (previous 21c946bc): header shows Sign in -> https://account.albena.ai/login; /, /pricing, /waitlist, /features, /trust 200; check-headers OK. Includes footer PR #71.
+  - Rollback: `cd portal/worker && npx wrangler rollback c8ef0e70-8277-4548-a36b-7eb11fcd2be2`; `cd worker && npx wrangler rollback 21c946bc-8326-4ac0-8245-2b177cfd5a11`.
+  - gitleaks: the Cloudflare account id tripped generic-api-key; fixed with an inline `gitleaks:allow` comment (survives squash) + .gitleaksignore for branch commits.
 
 ## Staging state (earlier)
 - Portal staging version 1836d1cf, site staging fc94964c (branch feat/early-access-signin). Both up (200).
