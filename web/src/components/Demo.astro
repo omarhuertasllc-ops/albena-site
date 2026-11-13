@@ -111,18 +111,21 @@
 </script>
 
 <style is:global>
-  .demo { position: relative; max-width: 720px; margin: 56px auto 0; padding: 18px; text-align: left; border: 1px solid var(--line-2); border-radius: 18px; background: linear-gradient(180deg, #121316, #0b0c0d); box-shadow: 0 40px 100px -30px rgba(113, 112, 255, 0.4); }
+  .demo { position: relative; max-width: 720px; margin: 56px auto 0; padding: 18px; text-align: left; border: 1px solid var(--line-2); border-radius: var(--r); background: var(--bg-2); box-shadow: 0 40px 100px -30px rgba(34, 197, 94, 0.4); }
   .demo-badge { display: inline-flex; gap: 8px; align-items: center; font-size: 12.5px; font-weight: 500; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 999px; padding: 4px 12px; }
   .demo-h { margin: 16px 0 8px; font-size: 13px; color: var(--fg-2); font-weight: 500; }
   .demo-prompts { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chipbtn { font: inherit; font-size: 14px; color: var(--fg); text-align: left; min-height: 44px; padding: 8px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, 0.04); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
-  .chipbtn:hover { background: rgba(255, 255, 255, 0.09); }
-  .chipbtn[aria-pressed='true'] { border-color: var(--acc-hi); background: rgba(113, 112, 255, 0.18); }
-  .demo-log { margin-top: 14px; min-height: 230px; max-height: 330px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0, 0, 0, 0.25); }
+  .chipbtn { font: inherit; font-size: 14px; color: var(--fg); text-align: left; min-height: 44px; padding: 8px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+  .chipbtn:hover { border-color: var(--acc); transform: translateY(-1px); }
+  .chipbtn[aria-pressed='true'] { border-color: var(--acc-hi); background: rgba(34, 197, 94, 0.18); }
+  .demo-log { margin-top: 14px; min-height: 230px; max-height: 330px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
   .demo-empty { margin: auto; max-width: 40ch; text-align: center; color: var(--fg-2); font-size: 14px; }
   .demo .msg { max-width: 92%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); animation: msgin 0.35s var(--ease); overflow-wrap: anywhere; }
-  .demo .msg-you { align-self: flex-end; background: rgba(113, 112, 255, 0.2); border-color: rgba(165, 168, 255, 0.35); }
-  .demo .msg-tool { border-style: dashed; background: rgba(76, 183, 130, 0.08); border-color: rgba(76, 183, 130, 0.45); }
+  .demo .msg-you { align-self: flex-end; background: var(--acc); border-color: transparent; border-radius: 18px 18px 4px 18px; }
+  .demo .msg-you .who { color: var(--on-acc); opacity: 0.75; }
+  .demo .msg-you p { color: var(--on-acc); font-weight: 500; }
+  .demo .msg-albena { background: var(--panel); border-radius: 4px 18px 18px 18px; }
+  .demo .msg-tool { border-style: dashed; background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.45); }
   .demo .msg-approve { border-color: rgba(242, 201, 76, 0.6); background: rgba(242, 201, 76, 0.08); }
   .demo .who { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-2); margin-bottom: 3px; }
   .demo .msg p { font-size: 14.5px; color: var(--fg); }
