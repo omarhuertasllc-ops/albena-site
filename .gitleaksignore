@@ -1,3 +1,5 @@
 # Cloudflare account ID (public identifier, not a secret) in the portal early-access vars.
 7ee307370e5b59aad5a907e552cf1a7ff11052a9:portal/worker/wrangler.jsonc:generic-api-key:29
 7ee307370e5b59aad5a907e552cf1a7ff11052a9:portal/worker/wrangler.jsonc:generic-api-key:64
+7ee307370e5b59aad5a907e552cf1a7ff11052a9:portal/worker/wrangler.jsonc:generic-api-key:29
+7ee307370e5b59aad5a907e552cf1a7ff11052a9:portal/worker/wrangler.jsonc:generic-api-key:64
