@@ -26,6 +26,8 @@ export interface Bindings {
   OBVERA_EVENTS_URL?: string; OBVERA_EVENTS_KEY?: string;
   // Sign in with Microsoft (Entra ID, single tenant). ENTRA_CLIENT_SECRET is a Worker secret; the others are vars. Unset/empty = SSO off.
   ENTRA_CLIENT_ID?: string; ENTRA_TENANT_ID?: string; ENTRA_CLIENT_SECRET?: string;
+  // Early access (docs/EARLY-ACCESS.md): vars CF_ACCOUNT_ID + EARLY_ACCESS_GROUP_ID, secret CF_ACCESS_READ_TOKEN (Access: Groups Read only). Unset = fail closed.
+  CF_ACCOUNT_ID?: string; EARLY_ACCESS_GROUP_ID?: string; CF_ACCESS_READ_TOKEN?: string;
   PRICE_HUB_NVIDIA_MONTHLY?: string; PRICE_HUB_NVIDIA_ANNUAL?: string; PRICE_HUB_NVIDIA_HARDWARE?: string;
 }
 export type AppEnv = {

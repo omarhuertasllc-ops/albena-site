@@ -62,7 +62,7 @@ export function mountMagic(app: Hono<AppEnv>): void {
     if (!consumed) return bad();
     await finishLogin(c, consumed.email, "magic");
     deleteCookie(c, COOKIE, cookieOptions);
-    return c.redirect("/", 303);
+    return c.redirect("/albena", 303);
   });
   app.post("/api/auth/magic/code", async c => {
     if (!(await allowed(c))) return c.json({ error: "rate_limited" }, 429);

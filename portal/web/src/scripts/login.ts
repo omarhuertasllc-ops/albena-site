@@ -62,7 +62,7 @@ pk.addEventListener('click', async () => {
     const o = await api.passkeyLoginOptions();
     const response = await startAuthentication({ optionsJSON: o as unknown as Parameters<typeof startAuthentication>[0]['optionsJSON'] });
     await api.passkeyLoginVerify(response);
-    location.assign('/');
+    location.assign('/albena');
   } catch (err) {
     say(err instanceof Error && err.name === 'NotAllowedError' ? 'Passkey sign-in was canceled.' : errMsg(err), 'is-error');
     pk.disabled = false;
