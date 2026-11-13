@@ -6,6 +6,7 @@ import Logo from './Logo.astro';
     <div class="foot-brand">
       <a class="brand" href="/" aria-label="Albena home"><Logo size={20} id="foot" /><span>Albena</span></a>
       <p>A private, local-first AI assistant for your home and life.</p>
+      <p class="foot-badge"><img src="/partner/servicenow-select-build-160.webp" srcset="/partner/servicenow-select-build-160.webp 1x, /partner/servicenow-select-build-320.webp 2x" width="104" height="104" alt="ServiceNow Select Partner – Build" loading="lazy" decoding="async" /></p>
     </div>
     <nav class="fcols" aria-label="Footer">
       <div><h2>Product</h2><a href="/features">Features</a><a href="/connectors">Connectors</a><a href="/hardware">Hardware</a><a href="/pricing">Pricing</a><a href="/how-it-works">How it works</a><a href="/compare">Compare</a><a href="/faq">FAQ</a><a href="/roadmap">Roadmap</a><a href="/waitlist">Waitlist</a></div>
@@ -16,3 +17,8 @@ import Logo from './Logo.astro';
   </div>
   <div class="foot-bot"><p>&copy; 2026 Omar Huertas LLC</p><p>Early access. Not yet generally available.</p></div>
 </footer>
+
+<style>
+  .foot-badge { margin: 16px 0 0; }
+  .foot-badge img { display: block; width: 104px; height: 104px; border-radius: 12px; }
+</style>
