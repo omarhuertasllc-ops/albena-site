@@ -8,6 +8,7 @@ import * as connectors from "./connectors";
 import * as account from "./account";
 import * as support from "./support";
 import * as integrity from "./integrity";
+import * as earlyaccess from "./earlyaccess";
 
 // Static imports on purpose: a broken module must fail at startup, not be swallowed.
-export const modules: ReadonlyArray<{ mount(app: Hono<AppEnv>): void; migrations: string[] }> = [integrity, auth, billing, hubs, hubsecurity, connectors, account, support]; // integrity first: its R3 hold must run before every handler
+export const modules: ReadonlyArray<{ mount(app: Hono<AppEnv>): void; migrations: string[] }> = [integrity, auth, billing, hubs, hubsecurity, connectors, account, support, earlyaccess]; // integrity first: its R3 hold must run before every handler

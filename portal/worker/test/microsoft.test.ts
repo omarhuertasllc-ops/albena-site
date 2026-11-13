@@ -150,14 +150,14 @@ describe("callback", () => {
   it("accepts a token within clock skew", async () => {
     const f = await begin();
     exchange(await jwt(claimsFor(f.nonce, { exp: Math.floor(Date.now() / 1000) - 200 })));
-    expect((await callback({ code: "c", state: f.state }, f.cookie)).headers.get("location")).toBe("/");
+    expect((await callback({ code: "c", state: f.state }, f.cookie)).headers.get("location")).toBe("/albena");
   });
 
   it("signs in: creates the user, session and audit entry, sends the right token request", async () => {
     const f = await begin(); const since = await lastAuditId();
     exchange(await jwt(claimsFor(f.nonce)));
     const r = await callback({ code: "the-code", state: f.state }, f.cookie);
-    expect(r.status).toBe(303); expect(r.headers.get("location")).toBe("/");
+    expect(r.status).toBe(303); expect(r.headers.get("location")).toBe("/albena");
     const sess = cookieOf(r, SESSION_COOKIE)!;
     expect(sess).toBeDefined();
     const form = new URLSearchParams(fetchCalls.find(c => c.url.endsWith("/oauth2/v2.0/token"))!.body);
@@ -186,7 +186,7 @@ describe("callback", () => {
     ]);
     const f = await begin();
     exchange(await jwt(claimsFor(f.nonce, { email: undefined, preferred_username: email.toUpperCase() })));
-    expect((await callback({ code: "c", state: f.state }, f.cookie)).headers.get("location")).toBe("/");
+    expect((await callback({ code: "c", state: f.state }, f.cookie)).headers.get("location")).toBe("/albena");
     const n = await e.DB.prepare("SELECT COUNT(*) AS n FROM sessions WHERE user_id = ? AND login_method = 'microsoft'").bind(id).first<{ n: number }>();
     expect(n?.n).toBe(1);
   });

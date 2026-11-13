@@ -126,7 +126,7 @@ export function mountMicrosoft(app: Hono<AppEnv>): void {
       const email = typeof raw === "string" ? raw.trim().toLowerCase() : "";
       if (email.length > 254 || !EMAIL_RE.test(email)) return fail("bad_email");
       await finishLogin(c, email, "microsoft");
-      return c.redirect("/", 303);
+      return c.redirect("/albena", 303);
     } catch (err) {
       // Reason codes only: never the token, the code or the error text (which can echo token fragments).
       return fail(err instanceof Error && /^[a-z_]+$/.test(err.message) ? err.message : "error");

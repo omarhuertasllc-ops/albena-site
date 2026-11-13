@@ -21,7 +21,7 @@ form.addEventListener('submit', async (e) => {
   send.disabled = true; err.textContent = '';
   try {
     await api.magicCode(code);
-    location.assign(MOCK ? '/?mock=1' : '/');
+    location.assign(MOCK ? '/?mock=1' : '/albena');
   } catch (ex) {
     send.disabled = false;
     const c = ex instanceof ApiError ? ex.code : '';
