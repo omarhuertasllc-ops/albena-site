@@ -40,7 +40,14 @@ cd portal/worker && npx wrangler secret put CF_ACCESS_READ_TOKEN --env staging
 - web/src/components/Nav.astro ("Sign in")
 - scripts/early-access.sh
 
-## Staging state
+## Done 2026-11-13 (Omar: "you can do all this")
+- Group created: `e34d96cd-6a31-44b0-b09c-2c0c1a79270f` (omar, polina, chloe). Test email added for the test, then removed.
+- Account token "albena-portal-staging early-access read" (Access: Groups Read only) created and piped straight into staging secret CF_ACCESS_READ_TOKEN (never displayed).
+- Staging portal b7034264: ea-allowed-test -> granted (chat/console/downloads), ea-denied-test -> "You're on the list". Screenshots shown.
+- `link` run: chat.albena.ai + console.albena.ai "Allowed people" policies now include only the group (same 3 people). Rollback: put the 3 inline email rules back on policies d0967a03 / 5cfa6274.
+- Production portal NOT deployed (needs a prod read token: same command with `--env` omitted, then merge PR #72 and portal/deploy.sh).
+
+## Staging state (earlier)
 - Portal staging version 1836d1cf, site staging fc94964c (branch feat/early-access-signin). Both up (200).
 - `/albena` shows `unavailable` until the group id + read token are set (verified with seeded staging test sessions `ea-test-allowed` / `ea-test-denied`, emails ea-allowed-test@example.com / ea-denied-test@example.com).
 - To finish the test: create group, `add ea-allowed-test@example.com`, set the id + secret, redeploy staging, check both sessions, then `remove` the test email.

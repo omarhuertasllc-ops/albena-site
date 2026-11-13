@@ -9,7 +9,7 @@
 #   scripts/early-access.sh link                   point the chat + console "Allowed people" policies at the group (prod change: Omar's yes)
 set -euo pipefail
 ACCT="${CF_ACCOUNT_ID:-d59bc8ce599de891f475d1cd8af22370}"
-GROUP="${EARLY_ACCESS_GROUP_ID:-}"
+GROUP="${EARLY_ACCESS_GROUP_ID:-e34d96cd-6a31-44b0-b09c-2c0c1a79270f}"
 NAME="Albena Early Access"
 CHAT_APP=52718877-ddb0-4960-bbb1-af8e92b8b0f1; CHAT_POL=d0967a03-0265-4e0d-bf15-026a94e6ebb8
 CONSOLE_APP=8b9d10fd-5e23-4475-83bc-aa378caeb898; CONSOLE_POL=5cfa6274-ad10-4ad6-919c-a7d1a388f487

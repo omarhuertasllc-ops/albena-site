@@ -26,7 +26,7 @@
     // Sign in with Microsoft (single-tenant Entra ID). ENTRA_CLIENT_ID empty = SSO off. Secret ENTRA_CLIENT_SECRET.
     "ENTRA_TENANT_ID": "a4852d28-a73d-457b-87dc-d289eb20bf16", "ENTRA_CLIENT_ID": "f40cdeba-ea41-46d7-8d80-0c1dc67f7b64",
         // Early access: the Cloudflare Access group shared with chat/console (docs/EARLY-ACCESS.md). Secret: CF_ACCESS_READ_TOKEN.
-        "CF_ACCOUNT_ID": "d59bc8ce599de891f475d1cd8af22370", "EARLY_ACCESS_GROUP_ID": "",
+        "CF_ACCOUNT_ID": "d59bc8ce599de891f475d1cd8af22370", "EARLY_ACCESS_GROUP_ID": "e34d96cd-6a31-44b0-b09c-2c0c1a79270f",
     // Stripe Price IDs (test mode). Placeholders: empty means "plan not configured" and checkout answers 503.
     "PRICE_BYO_MONTHLY": "", "PRICE_BYO_ANNUAL": "",
     "PRICE_HUB_MAC_MONTHLY": "", "PRICE_HUB_MAC_ANNUAL": "", "PRICE_HUB_MAC_HARDWARE": "",
@@ -61,7 +61,7 @@
         "MAIL_PROVIDER": "dev",
         "ENTRA_TENANT_ID": "a4852d28-a73d-457b-87dc-d289eb20bf16", "ENTRA_CLIENT_ID": "f40cdeba-ea41-46d7-8d80-0c1dc67f7b64",
         // Early access: the Cloudflare Access group shared with chat/console (docs/EARLY-ACCESS.md). Secret: CF_ACCESS_READ_TOKEN.
-        "CF_ACCOUNT_ID": "d59bc8ce599de891f475d1cd8af22370", "EARLY_ACCESS_GROUP_ID": "",
+        "CF_ACCOUNT_ID": "d59bc8ce599de891f475d1cd8af22370", "EARLY_ACCESS_GROUP_ID": "e34d96cd-6a31-44b0-b09c-2c0c1a79270f",
         "PRICE_BYO_MONTHLY": "", "PRICE_BYO_ANNUAL": "",
         "PRICE_HUB_MAC_MONTHLY": "", "PRICE_HUB_MAC_ANNUAL": "", "PRICE_HUB_MAC_HARDWARE": "",
         "PRICE_HUB_NVIDIA_MONTHLY": "", "PRICE_HUB_NVIDIA_ANNUAL": "", "PRICE_HUB_NVIDIA_HARDWARE": ""
