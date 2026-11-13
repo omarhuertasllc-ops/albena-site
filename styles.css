@@ -248,3 +248,10 @@ main:focus{outline:0}
 .nf h1{max-width:none}
 .nf p{margin:16px 0 24px;color:var(--mut)}
 .legal .toc a{display:inline-block;padding:3px 0;min-height:24px}
+/* Omar Huertas LLC wordmark in footer (2026-11-13) */
+.foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.ohllc{display:inline-flex;align-items:center;gap:8px;color:var(--mut);text-decoration:none}
+.ohllc .wm{display:inline-flex;align-items:baseline;gap:.3em;font-weight:900;font-size:15px;letter-spacing:-.04em;line-height:1;color:var(--fg,currentColor)}
+.ohllc .wm b{font-weight:900}
+.ohllc .wm-g{background:linear-gradient(90deg,#2e9e1f,#62d84e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ohllc .wm i{font-style:normal;font-weight:700;font-size:.6em;letter-spacing:.3em}
